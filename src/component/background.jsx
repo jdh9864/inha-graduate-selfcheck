@@ -17,7 +17,7 @@ export default function BackGround({ children }) {
       {/* 제목 */}
       <h1
         className="
-          fixed top-20 left-1/2 -translate-x-1/2 
+          fixed top-12 left-1/2 -translate-x-1/2 
           text-white font-bold 
           text-2xl sm:text-3xl md:text-4xl lg:text-5xl
         "
