@@ -18,31 +18,50 @@ export default function Result() {
             navigate("/", {replace: true});
             return;
         }
-        execute(ctx).catch(() => {
-        });
+        execute(ctx).catch(() => {});
     }, []);
 
     const payloadSummary = useMemo(() => {
         if (!payload) return {studentId: "", department: "", english: {}, transcript: {}};
         return {
-            studentId: payload.studentId, department: payload.department, english: {
+            studentId: payload.studentId,
+            department: payload.department,
+            english: {
                 testType: payload.english.testType,
                 numericScore: payload.english.numericScore,
                 gradeScore: payload.english.gradeScore,
-            }, transcript: {
-                gpa: payload.transcript.gpa, totalCredits: payload.transcript.totalCredits,
+            },
+            transcript: {
+                gpa: payload.transcript.gpa,
+                totalCredits: payload.transcript.totalCredits,
             },
         };
     }, [payload]);
 
-    return (<BackGround>
-        <ShowResultBox
-            loading={loading}
-            err={err}
-            view={view}
-            payloadSummary={payloadSummary}
-            onBack={() => navigate(-1)}
-            onHome={() => navigate("/")}
-        />
-    </BackGround>);
+    return (
+        <BackGround>
+            <div
+                className="
+                    fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                    w-[90vw] sm:w-[70vw] md:w-[50vw] lg:w-[40vw] xl:w-[35vw]
+                    max-h-[85vh]
+                    flex flex-col items-center justify-start
+                    p-3 sm:p-4 md:p-6 gap-2
+                    overflow-y-auto rounded-2xl
+                    scale-90 sm:scale-95 md:scale-100
+                    transition-transform duration-300
+                "
+            >
+                <ShowResultBox
+                    loading={loading}
+                    err={err}
+                    view={view}
+                    payloadSummary={payloadSummary}
+                    onBack={() => navigate(-1)}
+                    onHome={() => navigate("/")}
+                />
+            </div>
+        </BackGround>
+    );
 }
+

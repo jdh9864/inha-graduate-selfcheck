@@ -10,7 +10,6 @@ export default function Check() {
     const navigate = useNavigate();
     const {state} = useLocation();
 
-    // Home → navigate 시 넣은 context (student/english/parsed)
     const ctx = state?.context || {};
     const parsed = ctx?.parsed;
     const initial = parsed?.data || {};
@@ -42,32 +41,50 @@ export default function Check() {
         };
 
         const nextContext = {
-            ...ctx, parsed: {
-                ...parsed, data: merged,
+            ...ctx, 
+            parsed: {
+                ...parsed, 
+                data: merged,
             },
         };
 
         navigate("/result", {state: {context: nextContext}});
     };
 
-    return (<BackGround>
-        <WhiteBox
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[75%] h-[70%] flex flex-col items-center p-4 gap-4 overflow-hidden">
-            <div className="text-4xl font-bold mb-2">정보확인</div>
+    return (
+        <BackGround>
+            <WhiteBox
+                className="
+                absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+                w-[95%] sm:w-[85%] md:w-[75%] 
+                h-[85%] sm:h-[80%] md:h-[70%]
+                flex flex-col items-center p-4 gap-4 overflow-hidden
+                rounded-2xl
+                "
+            >
+                <div className="
+                    text-3xl sm:text-4xl lg:text-5xl
+                    font-bold mb-2 text-center">
+                    정보확인
+                </div>
 
-            <div className="w-full overflow-y-auto pr-1">
-                <TranscriptEditor
-                    value={initial}
-                    onChange={setEdited}
-                    className="min-w-0"
-                />
-            </div>
+                <div className="w-full overflow-y-auto pr-1 flex-1 min-h-0">
+                    <TranscriptEditor
+                        value={initial}
+                        onChange={setEdited}
+                        className="min-w-0"
+                    />
+                </div>
 
-            <CommonButton onClick={onConfirm} className="mt-2 w-full max-w-md">
-                확인
-            </CommonButton>
-        </WhiteBox>
-    </BackGround>);
+                <CommonButton 
+                    onClick={onConfirm} 
+                    className="mt-2 w-full max-w-sm"
+                >
+                    확인
+                </CommonButton>
+            </WhiteBox>
+        </BackGround>
+    );
 }
 
 /* helpers */
@@ -80,3 +97,4 @@ function toFloat(v, d = 0) {
     const n = Number(v);
     return Number.isFinite(n) && n >= 0 ? n : d;
 }
+

@@ -13,7 +13,6 @@ import {TranscriptAPI} from "../lib/api";
 export default function Home() {
     const navigate = useNavigate();
 
-    // 하위 컴포넌트에서 값 받기 (콜백 방식 전제)
     const [file, setFile] = useState(null);
     const [englishType, setEnglishType] = useState("");
     const [englishDetail, setEnglishDetail] = useState({
@@ -34,10 +33,8 @@ export default function Home() {
         try {
             setSubmitting(true);
 
-            // 1) 업로드(서버 파싱) 수행 → 응답 그대로 보관
-            const parsed = await TranscriptAPI.upload(file); // ApiResponse 형태 가정
+            const parsed = await TranscriptAPI.upload(file);
 
-            // 2) 다음 페이지로 이동 (컨텍스트에 파싱 결과 포함)
             navigate("/check", {
                 state: {
                     context: {
@@ -63,12 +60,20 @@ export default function Home() {
     return (
         <BackGround>
             <WhiteBox
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[25%] h-[50%] flex flex-col items-center justify-start p-6 gap-3">
-                <div className="text-2xl font-bold mb-2">졸업요건확인</div>
+                className="
+                    absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                    w-[90%] sm:w-[70%] md:w-[50%] lg:w-[35%] xl:w-[30%]
+                    h-auto max-h-[60vh]
+                    flex flex-col items-center justify-start
+                    p-4 sm:p-6 gap-3 overflow-y-auto rounded-2xl
+                "
+            >
+                <div className="text-xl sm:text-2xl font-bold mb-2 text-center">
+                    졸업요건확인
+                </div>
 
                 <FileBox onFileSelected={setFile}/>
 
-                {/* 타입 변경은 onSelect, 점수/등급 변경은 onChangeDetail로 받음 */}
                 <SelectBox
                     onSelect={setEnglishType}
                     onChangeDetail={setEnglishDetail}
@@ -76,10 +81,15 @@ export default function Home() {
 
                 <Studentinfobox onChange={setStudent}/>
 
-                <CommonButton onClick={onSubmit} disabled={submitting} className="mt-2">
+                <CommonButton 
+                    onClick={onSubmit} 
+                    disabled={submitting} 
+                    className="mt-2 w-full"
+                >
                     {submitting ? "제출 중..." : "제출하기"}
                 </CommonButton>
             </WhiteBox>
         </BackGround>
     );
 }
+
