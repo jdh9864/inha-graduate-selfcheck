@@ -2,7 +2,7 @@ import logo from "../assets/inha_logo.svg";
 
 export default function BackGround({ children }) {
   return (
-    <div className="bg-[#005BAC] w-screen h-screen relative">
+    <div className="bg-[#005BAC] w-screen min-h-screen relative">
       {/* 로고 */}
       <img
         src={logo}

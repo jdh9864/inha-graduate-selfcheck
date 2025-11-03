@@ -41,26 +41,28 @@ export default function Result() {
     return (
         <BackGround>
             <div
-                className="
-                    fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                    w-[90vw] sm:w-[70vw] md:w-[50vw] lg:w-[40vw] xl:w-[35vw]
-                    max-h-[85vh]
-                    flex flex-col items-center justify-start
-                    p-3 sm:p-4 md:p-6 gap-2
-                    overflow-y-auto rounded-2xl
-                    scale-90 sm:scale-95 md:scale-100
-                    transition-transform duration-300
-                "
-            >
-                <ShowResultBox
-                    loading={loading}
-                    err={err}
-                    view={view}
-                    payloadSummary={payloadSummary}
-                    onBack={() => navigate(-1)}
-                    onHome={() => navigate("/")}
-                />
-            </div>
+    className="
+         fixed top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2
+        w-[90vw] sm:w-[70vw] md:w-[50vw] lg:w-[40vw] xl:w-[35vw]
+        max-h-[85vh]
+        flex flex-col items-center justify-start
+        p-3 sm:p-4 md:p-6 gap-2
+        overflow-y-auto rounded-2xl
+        scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/20 hover:scrollbar-thumb-white/40
+        scale-90 sm:scale-95 md:scale-100
+        transition-transform duration-300
+    "
+>
+    <ShowResultBox
+        loading={loading}
+        err={err}
+        view={view}
+        payloadSummary={payloadSummary}
+        onBack={() => navigate(-1)}
+        onHome={() => navigate("/")}
+    />
+</div>
+
         </BackGround>
     );
 }
