@@ -86,11 +86,11 @@ export default function ShowResultBox({
               <div className="font-semibold mb-2 text-sm sm:text-base">
                 미이수 핵심교양
               </div>
-              {view.remainingCoreType.length === 0 ? (
+              {view.remainingCoreTypes.length === 0 ? (
                 <div className="text-sm text-gray-600">전부 충족했습니다.</div>
               ) : (
                 <div className="flex flex-wrap gap-2">
-                  {view.remainingCoreType.map((t) => (
+                  {view.remainingCoreTypes.map((t) => (
                     <span
                       key={t}
                       className="px-2 py-1 text-xs rounded-full bg-gray-100 border"

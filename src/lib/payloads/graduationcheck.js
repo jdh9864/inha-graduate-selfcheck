@@ -66,18 +66,18 @@ export function mapGraduationCheckResponse(res) {
     const remainingCourses = Array.isArray(first.remainingCourses) ? first.remainingCourses : [];
 
     // remainingCoreType 구조 방어
-    let remainingCoreType = [];
-    if (Array.isArray(first.remainingCoreType)) {
-        if (typeof first.remainingCoreType[0] === "string") {
-            remainingCoreType = first.remainingCoreType;
+    let remainingCoreTypes = [];
+    if (Array.isArray(first.remainingCoreTypes)) {
+        if (typeof first.remainingCoreTypes[0] === "string") {
+            remainingCoreTypes = first.remainingCoreTypes;
         } else {
             const flat = [];
-            first.remainingCoreType.forEach((x) => {
+            first.remainingCoreTypes.forEach((x) => {
                 if (!x) return;
                 if (Array.isArray(x)) flat.push(...x);
                 else if (typeof x === "object") flat.push(...Object.keys(x));
             });
-            remainingCoreType = Array.from(new Set(flat));
+            remainingCoreTypes = Array.from(new Set(flat));
         }
     }
 
@@ -93,6 +93,6 @@ export function mapGraduationCheckResponse(res) {
             missingTotalCredits: Number(credit.missingTotalCredits || 0),
         },
         remainingCourses,
-        remainingCoreType,
+        remainingCoreTypes,
     };
 }
